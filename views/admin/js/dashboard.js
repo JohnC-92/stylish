@@ -5,7 +5,7 @@ const socket = io(`https://${host}`);
 // let i = 1000;
 
 // listen from server
-socket.on('dataUpdate', function (data) {
+socket.on('dataUpdate', function(data) {
   console.log(data);
   // get data and render when database is renewed
   fetchData();

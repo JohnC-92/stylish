@@ -107,18 +107,6 @@ router.get('/api/:apiVersion/products/:category', cacheDetails, async (req, res)
       sum += productIDLength[products[i].id];
     }
 
-    // ----------------  Multiple DB queries  --------------------------------
-    // // replace all product variants
-    // const promises = products.map(async (product) => {
-    //   const productVariant = await dbQuery(`SELECT color_code, size,
-    //   stock FROM variant WHERE product_id = ?`, [product.id]);
-    //   product.variants = [];
-    //   product.variants = (JSON.parse(JSON.stringify(productVariant)));
-    // });
-
-    // // resolve all promises before sending data
-    // await Promise.all(promises);
-
     // Cases
     // case 1: length = limit or limit+1
     // case 2: length = 0

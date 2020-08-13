@@ -110,8 +110,6 @@ router.post('/order/checkout', async (req, res) => {
 router.get('/api/:apiVersion/order/payments', async (req, res) => {
   try {
     // select only columns user_id and total from database
-    // const viewOrder = `user_id, total`;
-    // const sql = `SELECT ${viewOrder} FROM orders`;
     const sql = 'SELECT user_id, total FROM orders';
 
     const data = await dbQuery(sql);
@@ -137,8 +135,6 @@ router.get('/api/:apiVersion/order/payments', async (req, res) => {
 router.get('/api/:apiVersion/order/paymentsGroupby', async (req, res) => {
   try {
     // select only columns user_id and total from database
-    // const viewOrder = `user_id, total`;
-    // const sql = `SELECT ${viewOrder} FROM orders`;
     const sql = 'SELECT user_id, SUM(total) FROM orders GROUP BY user_id';
 
     const data = await dbQuery(sql);
@@ -148,18 +144,6 @@ router.get('/api/:apiVersion/order/paymentsGroupby', async (req, res) => {
       delete d['SUM(total)'];
     });
     res.send({data: data});
-
-    // // Function to calculate sum of id
-    // // res.send(data)
-    // sumOfId = (id) => data.filter((dat) => dat.user_id === id).reduce((a, b) => a+b.total, 0);
-
-    // // create array of order according to user_id 1-5
-    // result = [];
-    // for (let i = 1; i <= 5; i++) {
-    //   result.push({user_id: i, total_payment: sumOfId(i)});
-    // }
-    // // client.setex('paymentData', 3600, JSON.stringify(result));
-    // res.send({data: result});
 
   } catch (err) {
     console.log(err);
@@ -196,10 +180,6 @@ router.get('/api/:apiVersion/order/dashboard', async (req, res) => {
   sql = 'SELECT price, qty FROM ordersProduct;';
   result = await dbQuery(sql);
   arr = result;
-  // let arr = [];
-  // for (let i = 0; i < result.length; i++) {
-  //   arr = arr.concat(Array(result[i].qty).fill(result[i].price));
-  // }
 
   // Case 4
   sql = 'SELECT product_id, size, SUM(qty) FROM ordersProduct GROUP BY product_id, size;';

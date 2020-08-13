@@ -1,24 +1,6 @@
 const config = require('../config');
 const mySQL = require('mysql');
 
-// // create db connection
-// const db = mySQL.createConnection({
-//   host: 'localhost',
-//   user: config.dbUser,
-//   password: config.dbPassword,
-//   database: config.dbDatabase,
-//   multipleStatements: true,
-// });
-
-// // create db pool connection
-// const db = mySQL.createPool({
-//   connectionLimit: 100,
-//   host: 'localhost',
-//   user: config.dbUser,
-//   password: config.dbPassword,
-//   database: config.dbDatabase,
-// });
-
 // create db pool connection (AMAZON RDS)
 const db = mySQL.createPool({
   connectionLimit: 200,

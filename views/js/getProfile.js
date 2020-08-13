@@ -52,12 +52,6 @@ async function getProfile(token) {
       console.log(res);
       if (!res.expiredAt) {
         getUser(res.data);
-        // divMsg(`
-        // Signed in with Cookie Token <br>
-        // ID: ${res.data.id} <br>
-        // Name: ${res.data.name} <br>
-        // Email: ${res.data.email} <br><br>
-        // `);
 
         // get show profile divs
         const loginformContent = document.getElementById('loginformContent');
@@ -108,12 +102,6 @@ async function signIn() {
     }).then((res) => {
       console.log(res);
       getUser(res.data.user);
-      // divMsg(`
-      // Signed in Successful <br>
-      // ID: ${res.data.user.id} <br>
-      // Name: ${res.data.user.name} <br>
-      // Email: ${res.data.user.email} <br><br>
-      // `);
       alert(`Signed in Successful`);
       window.location.reload();
     });
@@ -149,12 +137,6 @@ async function signUp() {
     }).then((res) => {
       console.log(res);
       getUser(res.data.user);
-      // divMsg(`
-      // Signed up Successful <br>
-      // ID: ${res.data.user.id} <br>
-      // Name: ${res.data.user.name} <br>
-      // Email: ${res.data.user.email} <br><br>
-      // `);
       alert(`Signed up Successful`);
       window.location.reload();
     });
