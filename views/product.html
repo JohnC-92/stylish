@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/product.css">
+  <title>Stylish 2020 Spring</title>
+  <script>
+    window.onload = function() {
+      getDetails();
+    };
+  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <section class="container">
+
+    <div id="header">
+
+    </div>
+
+    <main>
+      <div class="view">
+        <div id="product-main-image" class="main-image">
+          <img src="/" alt="">
+        </div>
+        <div class="details">
+          <div id="product-name" class="name">
+          </div>
+          <div id="product-id" class="id">
+          </div>
+          <div id="product-price" class="price">
+          </div>
+          <div id="product-color" class="colors">
+            <span class="title">顏色 &nbsp; |</span>
+          </div>
+          <div id="product-sizes" class="sizes">
+            <span class="title">尺寸 &nbsp; |</span>
+          </div>
+          <div class="qty">
+            <span class="title">數量 &nbsp; |</span>
+            <div id="product-qty" class="chooser">
+              <div class="op" data-value="-1">-</div>
+              <div class="value">1</div>
+              <div class="op" data-value="1">+</div>
+            </div>
+          </div>
+          <div class="add-cart">
+            <button id="product-add-cart-btn">加入購物車</button>
+          </div>
+          <div id="product-summary" class="summary">
+          </div>
+        </div>
+        <div class="separator">
+          <div class="title">更多產品資訊</div>
+          <div class="line"></div>
+        </div>
+        <div class="description">
+          <div id="product-story" class="story">
+          </div>
+          <div id="product-images" class="images" >
+            <img src="/">
+            <img src="/">
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer">
+
+    </div>
+
+    <div id="forms">
+      
+    </div>
+
+
+  </section>
+  <script src='./js/getDetails.js'></script>
+  <script>
+    $(function(){
+      $('#header').load('./reusehtml/reuseHeader.html');
+      $('#footer').load('./reusehtml/reuseFooter.html');
+      $('#forms').load('./reusehtml/reuseForm.html', function() {        
+        $.getScript("./js/headerForm.js")
+        $.getScript("./js/getProfile.js")
+        $.getScript("https://js.tappaysdk.com/tpdirect/v5.1.0", () => {
+          $.getScript("./js/tapPay.js");
+        });
+      })
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules
+uploads
+.env
+public/*.jpg
+.eslintrc.json
+assets
+*.crt
+*.pem
+*.cer

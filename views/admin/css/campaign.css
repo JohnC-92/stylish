@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
+
+* {
+  margin: 0;    
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.title {
+  background-color: cornflowerblue;
+  color: white;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 1.6em;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
+  min-width: 600px;
+  border-radius: 8px;
+}
+
+.campaignForm {
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px 0;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
+  min-width: 500px;
+  border-radius: 8px;
+}
+
+form {
+  width: 40%;
+  margin: 0 auto;
+}
+
+form input,
+form textarea {
+  outline: 0;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+form input:focus,
+form input:active,
+form textarea:focus,
+form textarea:active {
+  border: solid 0.5px cornflowerblue;
+}
+
+form input[type=submit] {
+  margin: 15px 0;
+}
+
+form input[type=submit]:hover {
+  opacity: 0.8;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+

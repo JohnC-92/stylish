@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Stylish 2020 Spring</title>
+  <script>
+    window.onload = function() {
+    carouselAuto(1);
+    getCampaign();
+    };
+  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <section class="container">
+      
+    <div id="header">
+
+    </div>
+
+    <div class="banner">
+      <a class="carousel show" href="./">
+        <div class="story"></div>
+      </a>
+      <a class="carousel" href="./">
+        <div class="story"></div>
+      </a>
+      <a class="carousel" href="./">
+        <div class="story"></div>
+      </a>
+      <div class="step">
+        <a class="circle circle-b" onclick="carousel(0)"></a>
+        <a class="circle" onclick="carousel(1)"></a>
+        <a class="circle" onclick="carousel(2)"></a>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="view">
+        
+      </div>
+    </div>
+
+    <div id="footer">
+
+    </div>
+
+    <div id="forms">
+      
+    </div>
+
+  </section>
+
+  <script src="./js/carousel.js"></script>
+  <script src="./js/getProduct.js"></script>
+  <script>
+    $(function(){
+      $('#header').load('./reusehtml/reuseHeader.html');
+      $('#footer').load('./reusehtml/reuseFooter.html');
+      $('#forms').load('./reusehtml/reuseForm.html', function() {        
+        $.getScript("./js/headerForm.js")
+        $.getScript("./js/getProfile.js")
+        $.getScript("https://js.tappaysdk.com/tpdirect/v5.1.0", () => {
+          $.getScript("./js/tapPay.js");
+        });
+      })
+    });
+  </script>
+
+</body>
+</html>

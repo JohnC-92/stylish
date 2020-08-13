@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management Page</title>
+    <link rel="stylesheet" href="./css/product.css">
+    <script src="validateProductForm.js"></script>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+
+        form, option, input, textarea {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <p>Product Management Page</p>
+        <p>Fill in the input to update product data to MySQL database</p>
+    </div>
+
+    <div class="productForm">
+        <form method="POST" action="/admin/product" enctype="multipart/form-data" onsubmit="return validateForm()">
+            
+            <label class="label" for="id">Product ID:</label>
+            <br>
+            <input type="number" id="id" name="productID">
+
+            <br><br>
+
+            <label class="label" for="title">Product title:</label>
+            <br>
+            <input type="text" id="title" name="productTitle">
+
+            <br><br>
+
+            <label class="label" for="description">Product description:</label>
+            <br>
+            <textarea type="text" id="description" name="productDescription" rows="2"></textarea>
+
+            <br><br>
+
+            <label class="label" for="price">Product price:</label>
+            <br>
+            <input type="number" id="price" name="productPrice">
+
+            <br><br>
+
+            <label class="label" for="place">Product category:</label><br>
+            <input class="category" type="radio" name="productCategory" value="men">
+            <label>男裝</label><br>
+            <input class="category" type="radio" name="productCategory"  value="women">
+            <label>女裝</label><br>
+            <input class="category" type="radio" name="productCategory"  value="accessories">
+            <label>配件</label>
+
+            <br><br>
+
+            <label class="label">Product texture:</label><br>
+            <input class="texture" type="checkbox" name="productTexture" value="棉 100%">
+            <label>棉 100%</label><br>
+            <input class="texture" type="checkbox" name="productTexture"  value="聚酯纖維">
+            <label>聚酯纖維</label>
+
+            <br><br>
+
+            <label class="label">Ways to wash product:</label><br>
+            <input class="wash" type="checkbox" name="productWash" value="手洗（水溫40度">
+            <label>手洗（水溫40度</label><br>
+            <input class="wash" type="checkbox" name="productWash"  value="洗衣機洗">
+            <label>洗衣機洗</label>     
+
+            <br><br>
+
+            <label class="label" for="place">Product manufacture place:</label><br>
+            <input class="place" type="radio" name="productPlace" value="韓國">
+            <label>韓國</label><br>
+            <input class="place" type="radio" name="productPlace"  value="台灣">
+            <label>台灣</label><br>
+            <input class="place" type="radio" name="productPlace"  value="日本">
+            <label>日本</label>
+
+            <br><br>
+
+            <label class="label" for="note">Product notes:</label>
+            <br>
+            <input type="text" id="note" name="productNote">
+
+            <br><br>
+
+            <label class="label" for="story">Product story:</label>
+            <br>
+            <textarea type="text" id="story" name="productStory" rows="4"></textarea>
+
+            <br><br>
+
+            <label class="label" for="color">Product color:</label><br>
+            <input id="1" class="color" type="checkbox" name="productColor" value="1">
+            <label for="1">深藍色</label>
+            <input id="2" class="color" type="checkbox" name="productColor" value="2">
+            <label for="2">白色</label>
+            <input id="3" class="color" type="checkbox" name="productColor" value="3">
+            <label for="3">蘋果綠</label>
+            <input id="4" class="color" type="checkbox" name="productColor" value="4">
+            <label for="4">淺藍色</label>
+            <input id="5" class="color" type="checkbox" name="productColor" value="5">
+            <label for="5">灰色</label>
+            <input id="6" class="color" type="checkbox" name="productColor" value="6">
+            <label for="6">巧克力色</label>
+            <input id="7" class="color" type="checkbox" name="productColor" value="7">
+            <label for="7">粉紅色</label>
+
+            <br><br>
+
+            <label class="label" for="size">Product size:</label><br>
+            <input class="size" type="checkbox" name="productSize" value="S">
+            <label>S</label><br>
+            <input class="size"type="checkbox" name="productSize"  value="M">
+            <label>M</label><br>
+            <input class="size"type="checkbox" name="productSize"  value="L">
+            <label>L</label>
+
+            <br><br>
+            
+            <label class="label" for="variant">Stock number for corresponding color and size:</label>
+            <div id="variant"></div>
+
+            <br>
+
+            <label class="label" for="photo">Choose product main photo:</label>
+            <input type="file" id="photo" name="productPhoto">
+
+            <br><br>
+
+            <label class="label" for="images">Choose other product images:</label>
+            <input type="file" id="images" name="productImages" multiple="multiple">
+            
+            <br>
+        
+            <input type="submit">
+        </form>
+    </div>
+
+<script>
+    var checkboxColor = document.querySelectorAll("input[name=productColor]");
+    var checkboxSize = document.querySelectorAll("input[name=productSize]");
+
+    for (let i = 0; i < checkboxColor.length; i++){
+        checkboxColor[i].addEventListener('click', () => {
+            variant = document.querySelectorAll('.stock');
+            generateOptions();
+        });
+    };
+
+    for (let i = 0; i < checkboxSize.length; i++){
+        checkboxSize[i].addEventListener('click', () => {
+            variant = document.querySelectorAll('.stock');
+            generateOptions();
+        });
+    };
+
+    function generateOptions(){
+        var colorElements = document.querySelectorAll('.color');      
+        var sizeElements = document.querySelectorAll('.size');
+        var variantDiv = document.getElementById('variant');
+        var variantStr = '';
+               
+        for (let i = 0; i < colorElements.length; i++){
+            if (colorElements[i].checked){
+                var cval = document.querySelector(`label[for='${colorElements[i].value}']`).textContent;
+                for (let j = 0; j < sizeElements.length; j++){
+                    if (sizeElements[j].checked){
+                        var sval = sizeElements[j].value;
+                        variantStr += `Color: ${cval}, Size: ${sval}, `;
+                        variantStr += `Stock: <input class="stock" type="number" id="stock" name="productStock"><br>`;
+                    }
+                }
+            } 
+        }
+        
+        if (variantStr === ''){
+            variantDiv.innerHTML = 'Please select at least one "color" and "size"';            
+        } else {
+            variantDiv.innerHTML = variantStr;            
+        }
+    }
+</script>
+
+</body>
+</html>

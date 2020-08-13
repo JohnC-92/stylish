@@ -1,0 +1,223 @@
+<div class="checkoutForm">
+  <div class="wrapper">
+    <div id="formContent">
+      
+      <span class="formCloseBtn">&times;</span>      
+      <h2 class="active"> Checkout </h2>
+
+      <div id="checkoutForm" class="checkoutContainer">
+
+        <div class="row row-desc">
+          <div class="variant">
+            
+          </div>
+          <div class="qty">
+            數量
+          </div>
+          <div class="price">
+            單價
+          </div>
+          <div class="subtotal">
+            小計
+          </div>
+          <div class="remove">
+
+          </div>
+        </div>
+
+        <div class="productList">
+
+        </div>
+
+        <div class="target">
+          <div class="country">
+            <span class="text">配送國家</span>
+            <select>
+              <option>台灣或離島</option>
+            </select>
+          </div>
+          <div class="country">
+            <span class="text">付款方式</span>
+            <select>
+              <option>信用卡付款</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="reminder">
+          <div>※ 提醒您：</div>
+          <div>● 請填寫正確收件人資訊，避免包裹配送不達</div>
+          <div>● 請填寫正確收件人姓名 ( 與證件相符 )，避免無法領取</div>
+        </div>
+
+        <div class="recipient">
+          <div class="title">
+            收件資料
+          </div>
+          
+          <div class="line">
+            <div class="text fadeIn">收件人姓名</div>
+            <input id="recipientName" type="text" class="fadeIn">
+          </div>
+          
+          <div class="line">
+            <div class="text fadeIn">Email</div>
+            <input id="recipientEmail" type="text" class="fadeIn">
+          </div>
+
+          <div class="line">
+            <div class="text fadeIn">手機號碼</div>
+            <input id="recipientHp" type="text" class="fadeIn">
+          </div>
+
+          <div class="line">
+            <div class="text fadeIn">收件地址</div>
+            <input id="recipientAddress" type="text" class="fadeIn">
+          </div>
+    
+          <div class="line">
+            <div class="text fadeIn">配送時間</div>
+            <div id="recipientTime" class="radio">
+              <input type="radio" name="time" class="radioBtn time fadeIn" value="morning"><span class="time">08:00 - 12:00</span>
+              <input type="radio" name="time" class="radioBtn time fadeIn" value="afternoon"><span class="time">14:00 - 18:00</span>
+              <input type="radio" name="time" class="radioBtn time fadeIn" value="anytime"><span class="time">不指定</span>
+            </div>
+          </div>
+
+          <div class="title">
+            付款資料
+          </div>
+
+          <div class="linecard">
+            <div class="text fadeIn control-label"><span id="cardtype"></span>信用卡號碼</div>
+            <div class="card-number-group card">
+              <div class="fadeIn form-control card-number"></div>
+            </div>
+          </div>
+          
+          <div class="linecard">
+            <div class="text fadeIn control-label">有效期限</div>
+            <div class="expiration-date-group card">
+              <div class="fadeIn form-control expiration-date" id="tappay-expiration-date"></div>
+            </div>
+          </div>
+          
+          <div class="linecard">
+            <div class="text fadeIn control-label">安全碼</div>
+            <div class="cvc-group card">
+              <div class="fadeIn form-control cvc"></div>
+            </div>
+          </div>
+
+          <div class="confirm">
+            <div class="line">
+              <div class="c-title">總金額</div>
+              <div id="confirmTotal" class="price"></div>
+            </div>
+            <div class="line">             
+              <div class="c-title">運費</div>
+              <div class="price">NT. 60</div>
+            </div>
+            <div class="separator-line">
+              <div class="separator"></div>
+            </div>
+            <div class="line">
+              <div class="c-title">應付金額</div>
+              <div id="confirmFinal" class="price"></div>
+            </div>
+            <div class="line">
+              <div class="payBtn">
+                <input type="submit" class="fadeIn" value="確認付款" onclick="validateForm(); checkout()">
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="loginForm">
+  <div class="wrapper">
+    <div id="loginformContent">
+      <span class="loginCloseBtn">&times;</span>    
+      <div id="msgDiv" class="formContent hide">
+
+      </div>
+
+      <!-- Tabs Titles -->
+      <h2 id="signIn" class="active"> Sign In </h2>
+      <h2 id="signUp" class="inactive underlineHover">Sign Up </h2>
+  
+      <!-- Sign In Form -->
+      <div id="signinForm" class="">
+        <div class="sign-line">
+          <div class="text fadeIn info">Email</div>
+          <input type="text" id="emailIn" class="fadeIn" name="login">
+        </div>
+        <div class="sign-line">
+          <div class="text fadeIn info">Password</div>
+          <input type="text" id="passwordIn" class="fadeIn" name="login">
+        </div>
+        <div class="sign-line">
+          <input type="submit" class="signinBtn fadeIn" value="Sign In" onclick="signIn()">
+        </div>
+        <div class="fadeIn fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+      </div>
+      
+      <!-- Sign Up Form -->
+      <div id="signupForm" class="hide">
+
+        <div class="sign-line">
+          <div class="text fadeIn info">Name</div>
+          <input type="text" id="nameUp" class="fadeIn" name="login">
+        </div>
+
+        <div class="sign-line">
+          <div class="text fadeIn info">Email</div>
+          <input type="text" id="emailUp" class="fadeIn" name="login">
+        </div>
+
+        <div class="sign-line">
+          <div class="text fadeIn info">Password</div>
+          <input type="text" id="passwordUp" class="fadeIn" name="login">
+        </div>
+
+        <div class="sign-line">
+          <input type="submit" class="fadeIn" value="Sign Up" onclick="signUp()">       
+        </div>
+      </div>
+    </div>
+
+    <div id="profileformContent" class="hide">
+      <span class="profileCloseBtn">&times;</span> 
+
+      <!-- Profile Form -->
+      <div id="profileForm">
+
+        <div class="profile">
+          <div id="welcome" class="text fadeIn profilewelcome"></div>
+        </div>
+        <div class="profile">
+          <img id="image" src="" alt="" class="text fadeIn profilepic">
+        </div>
+        <div class="profile">
+          <div id="name" class="text fadeIn profileinfo"></div>
+        </div>
+        <div class="profile">
+          <div id="email" class="text fadeIn profileinfo"></div>
+        </div> 
+        <div class="profile">
+          <input type="submit" class=" fadeIn" value="Sign Out" onclick="signOut()">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v7.0&appId=2594196780898171&autoLogAppEvents=1"></script>
+<script src="./js/fb.js"></script>
