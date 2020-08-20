@@ -162,8 +162,8 @@ router.post('/user/signin', async (req, res) => {
     // define FB API request options
     const options = {
       method: 'GET',
-      url: `https://graph.facebook.com/${config.appID}?fields=id,name,email&access_token=${config.appToken}`,
-      // url: `https://graph.facebook.com/me?fields=id,name,email&access_token=${req.body.access_token}`,
+      // url: `https://graph.facebook.com/${config.appID}?fields=id,name,email&access_token=${config.appToken}`,
+      url: `https://graph.facebook.com/me?fields=id,name,email&access_token=${req.body.access_token}`,
     };
     try {
       // request FB API to return user name and email
@@ -171,7 +171,9 @@ router.post('/user/signin', async (req, res) => {
       fbResponse = JSON.parse(`${fbResponse}`);
       const name = fbResponse.name;
       const email = fbResponse.email;
-      const picture = `${config.s3URL}/stylish-4.jpg`;
+      // const picture = `${config.s3URL}/stylish-4.jpg`;
+      const picture = 'https://graph.facebook.com/' + id + '/picture?type=large';
+
       const token = 'Bearer ' + jwt.sign(
           {
             admin: email,
@@ -195,7 +197,7 @@ router.post('/user/signin', async (req, res) => {
             await dbLock(connection, 'user');
             const insertQuery = dbConnectionQuery(connection, `
             INSERT INTO user (access_token, provider, name, email, password, picture) 
-            VALUES (?, ?, ?, ?, 'NaN', ?);`, [token, provider, name, email, picture]);
+            VALUES (?, ?, ?, ?, null, ?);`, [token, provider, name, email, picture]);
             await dbUnlock(connection);
 
             console.log('Successfully added FB user data to user database!');
@@ -288,13 +290,19 @@ router.get('/user/profile', (req, res) => {
       if (dbUser.length === 0) {
         res.status(403).send('Invalid Access Token! Request failed!');
       } else {
+        let picture;
+        if (dbUser[0].provider === 'facebook') {
+          picture = dbUser[0].picture;
+        } else {
+          picture = `${config.s3URL}/${dbUser[0].picture}`;
+        }
         res.send({
           data: {
             id: dbUser[0].id,
             provider: dbUser[0].provider,
             name: dbUser[0].name,
             email: dbUser[0].email,
-            picture: `${config.s3URL}/${dbUser[0].picture}`,
+            picture: picture,
           },
         });
       }
