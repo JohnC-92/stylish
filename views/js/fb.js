@@ -30,12 +30,15 @@ window.fbAsyncInit = function() {
  */
 function checkLoginState() {
   FB.getLoginStatus(async function(response) {
-    const token = response.authResponse.accessToken;
     if (response.status === 'connected') {
       try {
+        data = {
+          provider: 'facebook',
+          token: response.authResponse.accessToken,
+        };
         await fetch('/user/signin', {
           method: 'POST',
-          body: JSON.stringify(token),
+          body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
           },
