@@ -173,7 +173,7 @@ router.post('/user/signin', async (req, res) => {
       const name = fbResponse.name;
       const email = fbResponse.email;
       // const picture = `${config.s3URL}/stylish-4.jpg`;
-      const picture = 'https://graph.facebook.com/' + id + '/picture?type=large';
+      const picture = 'https://graph.facebook.com/' + fbResponse.id + '/picture?type=large';
 
       const token = 'Bearer ' + jwt.sign(
           {
@@ -198,7 +198,7 @@ router.post('/user/signin', async (req, res) => {
             await dbLock(connection, 'user');
             const insertQuery = dbConnectionQuery(connection, `
             INSERT INTO user (access_token, provider, name, email, password, picture) 
-            VALUES (?, ?, ?, ?, null, ?);`, [token, provider, name, email, picture]);
+            VALUES (?, ?, ?, ?, 'NaN', ?);`, [token, provider, name, email, picture]);
             await dbUnlock(connection);
 
             console.log('Successfully added FB user data to user database!');
