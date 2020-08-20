@@ -6,10 +6,10 @@ window.fbAsyncInit = function() {
     version: 'v8.0',
   });
   FB.AppEvents.logPageView();
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-    console.log(response);
-  });
+  // FB.getLoginStatus(function(response) {
+  //   // statusChangeCallback(response);
+  //   console.log(response);
+  // });
 };
 
 /**
@@ -25,4 +25,34 @@ window.fbAsyncInit = function() {
   fjs.parentNode.insertBefore(js, fjs);
 } (document, 'script', 'facebook-jssdk'));
 
-
+/**
+ * Check login status after clicking facebook button
+ */
+function checkLoginState() {
+  FB.getLoginStatus(async function(response) {
+    const token = response.authResponse.accessToken;
+    if (response.status === 'connected') {
+      try {
+        await fetch('/user/signin', {
+          method: 'POST',
+          body: JSON.stringify(token),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then((res) => {
+          if (res.status === 403) {
+            alert('Invalid User/Password!');
+          }
+          return res.json();
+        }).then((res) => {
+          console.log(res);
+          getUser(res.data.user);
+          alert(`Signed in Successful`);
+          window.location.reload();
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+}

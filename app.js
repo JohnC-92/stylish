@@ -3,18 +3,18 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
-const https = require('https');
+// const https = require('https');
 const http = require('http');
 
-const options = {
-  key: fs.readFileSync('private.pem'),
-  cert: fs.readFileSync('certChain.crt'),
-};
+// const options = {
+//   key: fs.readFileSync('private.pem'),
+//   cert: fs.readFileSync('certChain.crt'),
+// };
 
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer(options, app);
+// const httpsServer = https.createServer(options, app);
 
-const io = require('socket.io')(httpsServer);
+const io = require('socket.io')(httpServer);
 
 app.use((req, res, next) => {
   res.io = io;
@@ -35,9 +35,13 @@ const apiMarketingRoutes = require('./core/apiMarketing');
 const apiUserRoutes = require('./core/apiUser');
 const apiOrderRoutes = require('./core/apiOrder');
 
-// index
-app.get('/', (req, res) => {
-  res.send('This text comes from AWS Johnny Server!');
+// CORS Control
+app.use('/', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization');
+  res.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.set('Access-Control-Allow-Credentials', 'true');
+  next();
 });
 
 // administrative routes
@@ -55,5 +59,5 @@ app.use(apiUserRoutes);
 // user order routes
 app.use(apiOrderRoutes);
 
-httpServer.listen(3000);
-httpsServer.listen(3001);
+httpServer.listen(4000);
+// httpsServer.listen(4001);

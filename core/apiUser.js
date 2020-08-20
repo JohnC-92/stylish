@@ -104,10 +104,11 @@ router.post('/user/signup', async (req, res) => {
 // ------------------------------User Sign In API------------------------------
 router.post('/user/signin', async (req, res) => {
   // get provider, email, hashed password and JWT token
-  const {provider, email} = req.body;
+  const {provider} = req.body;
 
   if ((req.headers['content-type'] === 'application/json') &&
   (provider === 'native') && (req.body.email) && (req.body.password)) {
+    const email = req.body.email;
     const hash = crypto.createHash('sha256');
     const password = hash.update(
         req.body.password + config.secretKey)
@@ -158,12 +159,12 @@ router.post('/user/signin', async (req, res) => {
     }
   } else if ( (req.headers['content-type'] === 'application/json') &&
   //  (provider === 'facebook') && (req.query.access_token) ) {
-    (provider === 'facebook') && (req.query.access_token) ) {
+    (provider === 'facebook') && (req.body.token) ) {
     // define FB API request options
     const options = {
       method: 'GET',
       // url: `https://graph.facebook.com/${config.appID}?fields=id,name,email&access_token=${config.appToken}`,
-      url: `https://graph.facebook.com/me?fields=id,name,email&access_token=${req.body.access_token}`,
+      url: `https://graph.facebook.com/me?fields=id,name,email&access_token=${req.body.token}`,
     };
     try {
       // request FB API to return user name and email
