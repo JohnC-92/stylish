@@ -339,9 +339,8 @@ function getToken(cookie) {
   const c = cookie.split('access_token=');
   let token;
   for (let i = 0; i < c.length; i++) {
-    if (c[i].substr(0,6) === 'Bearer') {
-      const t = c[i].split(';')[0];
-      token = t.substr(0, t.length-1); // remove ; from string
+    if (c[i].substr(0, 6) === 'Bearer') {
+      token = c[i].split(';')[0];
     }
   }
   return token;

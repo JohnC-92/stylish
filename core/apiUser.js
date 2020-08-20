@@ -273,7 +273,7 @@ router.get('/user/profile', (req, res) => {
   // if header authorization, check if provided token is valid
   if (req.headers['authorization']) {
     const token = req.headers['authorization'];
-    const tokenSplit = token.substr(7, token.length-1);
+    const tokenSplit = token.substr(9, token.length-1);
 
     // verify if JWT token is valid by comparing secretKey and endTime
     jwt.verify(tokenSplit, config.secretKey, async (err) => {
