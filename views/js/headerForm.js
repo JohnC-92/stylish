@@ -341,7 +341,8 @@ function getToken(cookie) {
   for (let i = 0; i < c.length; i++) {
     if (c[i].substr(0, 6) === 'Bearer') {
       token = c[i].split(';')[0];
+      return token;
     }
   }
-  return token;
+  return '';
 };
