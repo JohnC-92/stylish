@@ -29,7 +29,7 @@ function getDetails() {
       const images = document.getElementById('product-images');
 
       data = JSON.parse(request.response).data;
-      console.log(data);
+      // console.log(data);
 
       // create stock obj mapping
       let stockInd = 0;

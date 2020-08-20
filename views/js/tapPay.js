@@ -147,7 +147,7 @@ function checkout() {
 
     let header = {};
     // if user is logged in and has token
-    if (token) {
+    if (token !== '') {
       header = {
         'Content-Type': 'application/json',
         'authorization': token,

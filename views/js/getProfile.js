@@ -2,9 +2,8 @@
 const div = document.getElementById('msgDiv');
 
 // set global token, get token cookie from browser
-let token = '';
-if (document.cookie) {
-  token = decodeURIComponent(document.cookie).split('=')[1];
+const token = getToken(document.cookie);
+if (token !== '') {
   getProfile(token);
 }
 
@@ -49,7 +48,7 @@ async function getProfile(token) {
       }
       return res.json();
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (!res.expiredAt) {
         getUser(res.data);
 
@@ -100,7 +99,7 @@ async function signIn() {
       }
       return res.json();
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       getUser(res.data.user);
       alert(`Signed in Successful`);
       window.location.reload();
@@ -135,7 +134,7 @@ async function signUp() {
       }
       return res.json();
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       getUser(res.data.user);
       alert(`Signed up Successful`);
       window.location.reload();

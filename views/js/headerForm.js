@@ -329,3 +329,19 @@ function validateForm() {
   }
   validation = true;
 };
+
+/**
+ * Function to get token from cookie
+* @param {*} cookie pass in document.cookie
+* @return {*} token is returned if exist
+ */
+function getToken(cookie) {
+  const c = cookie.split('access_token=');
+  let token;
+  for (let i = 0; i < c.length; i++) {
+    if (c[i].substr(0,6) === 'Bearer') {
+      token = c[i].substr(0, c[i].length-1); // remove ; from string
+    }
+  }
+  return token;
+};

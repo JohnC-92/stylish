@@ -1,4 +1,4 @@
-# Dashboard Link
+<!-- # Dashboard Link
 
 https://john-code.club/admin/dashboard.html
 
@@ -66,4 +66,4 @@ Sample Page: 641 B transferred
 
 My Page: 1.5 kB transferred
 
-This is observed from Chrome network panel total download size in the summary pane.
+This is observed from Chrome network panel total download size in the summary pane. -->
