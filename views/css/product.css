@@ -1,4 +1,4 @@
-@import 'indexAll.css';
+@import "indexAll.css";
 
 /* MAIN */
 main {
@@ -70,17 +70,17 @@ main {
   margin-bottom: 20px;
 }
 
-.colors>.color {
+.colors > .color {
   width: 22px;
   height: 22px;
   border: solid 4px #ffffff;
   cursor: pointer;
   display: inline-block;
   margin-right: 10px;
-  box-shadow:0px 0px 1px #bbbbbb;
+  box-shadow: 0px 0px 1px #bbbbbb;
 }
 
-.colors>.current {
+.colors > .current {
   outline: solid 1px #979797;
 }
 
@@ -88,21 +88,21 @@ main {
   margin-bottom: 20px;
 }
 
-.sizes>.size {
+.sizes > .size {
   width: 30px;
   height: 30px;
   line-height: 30px;
   border-radius: 50%;
   text-align: center;
   display: inline-block;
-  margin-right:10px;
-  cursor:pointer;
-  background-color:#ececec;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #ececec;
 }
 
-.sizes>.current {
-  color:#ffffff;
-  background-color:#000000;
+.sizes > .current {
+  color: #ffffff;
+  background-color: #000000;
 }
 
 .disabled {
@@ -144,7 +144,7 @@ main {
   border: solid 1px #979797;
   letter-spacing: 4px;
   font-size: inherit;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /* MAIN-SEPARATOR */
@@ -182,4 +182,57 @@ main {
   margin-bottom: 30px;
   max-width: 100%;
   width: 960px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .view {
+    flex-direction: column;
+    margin: 0 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .main-image {
+    width: 90%;
+    margin: 0 0;
+    padding: 90px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-image img {
+    width: 50%;
+    min-width: 300px;
+  }
+
+  .view .details {
+    width: 90%;
+    margin: 10px 40px;
+  }
+
+  .view .separator {
+    margin: 30px 40px;
+  }
+
+  .sizes > .size {
+    margin-right: 15px;
+  }
+
+  .colors > .color {
+    margin-right: 20px;
+  }
+
+  .description {
+    margin: 0 40px;
+    width: auto;
+  }
+
+  .name {
+    font-size: 1.1em;
+  }
+
+  .view .price {
+    font-size: 1.1em;
+  }
 }

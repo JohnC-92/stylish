@@ -1,4 +1,4 @@
-@import 'indexAll.css';
+@import "indexAll.css";
 
 /* BANNER */
 
@@ -25,9 +25,10 @@
 }
 
 .story {
-  width: 60%;
-  margin: 0 auto;
-  padding-top: 160px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 166px auto 0;
+  padding-left: 27px;
   line-height: 50px;
   color: black;
   font-weight: 50;
@@ -65,19 +66,30 @@
 /* BODY-CONTENT */
 
 .body {
-  /* height: 100rem; */
+  min-height: calc(100vh - 750px);
   max-width: 1450px;
   margin: 2.2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-product {
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .view {
   max-width: 1200px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px 40px;
   font-size: 1.1em;
   letter-spacing: 4px;
   margin: 0 auto;
   justify-content: center;
+  padding: 0 24px;
 }
 
 .colors {
@@ -95,17 +107,56 @@
   margin-bottom: 10px;
 }
 
-.name, .view .price {
+.name,
+.view .price {
   color: black;
   font-weight: 50;
   opacity: 0.65;
 }
 
 .product {
-  margin: 16px;
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .img {
   width: 100%;
+  min-width: 150px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .banner {
+    margin-top: 80px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .view {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px 30px;
+    padding: 0 30px;
+  }
+
+  .name,
+  .view .price {
+    font-size: 14px;
+  }
+
+  .story {
+    font-size: 1.3rem;
+    margin: 70px auto 0;
+  }
+
+  .banner {
+    height: 320px;
+  }
+
+  .body {
+    min-height: calc(100vh - 620px);
+  }
+
+  .no-product {
+    font-size: 20px;
+  }
 }

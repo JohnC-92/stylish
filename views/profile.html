@@ -1,74 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="./css/profile.css">
-  <title>Stylish 2020 Spring</title>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-</head>
-<body>
-  <section class="container">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/profile.css" />
+    <title>Stylish 2020 Spring</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <section class="container">
+      <div id="header"></div>
 
-    <div id="header">
+      <div class="wrapper">
+        <div id="msgDiv" class="formContent hide"></div>
 
-    </div>
+        <div id="formContent">
+          <h2 id="signIn" class="active">Sign In</h2>
+          <h2 id="signUp" class="inactive">Sign Up</h2>
 
-    <div class="wrapper">
+          <div id="signinForm" class="">
+            <input
+              type="text"
+              id="emailIn"
+              class="fadeIn"
+              name="login"
+              placeholder="email"
+            />
+            <input
+              type="text"
+              id="passwordIn"
+              class="fadeIn"
+              name="login"
+              placeholder="password"
+            />
+            <input
+              type="submit"
+              class="fadeIn"
+              value="Sign In"
+              onclick="signIn()"
+            />
+          </div>
 
-      <div id="msgDiv" class="formContent hide">
-
+          <div id="signupForm" class="hide">
+            <input
+              type="text"
+              id="nameUp"
+              class="fadeIn"
+              name="login"
+              placeholder="name"
+            />
+            <input
+              type="text"
+              id="emailUp"
+              class="fadeIn"
+              name="login"
+              placeholder="email"
+            />
+            <input
+              type="text"
+              id="passwordUp"
+              class="fadeIn"
+              name="login"
+              placeholder="password"
+            />
+            <input
+              type="submit"
+              class="fadeIn"
+              value="Sign Up"
+              onclick="signUp()"
+            />
+          </div>
+        </div>
       </div>
 
-      <div id="formContent">
-        
-        <h2 id="signIn" class="active"> Sign In </h2>
-        <h2 id="signUp" class="inactive underlineHover">Sign Up </h2>
-            
-        <div id="signinForm" class="">
-          <input type="text" id="emailIn" class="fadeIn" name="login" placeholder="email">
-          <input type="text" id="passwordIn" class="fadeIn" name="login" placeholder="password">
-          <input type="submit" class="fadeIn" value="Sign In" onclick="signIn()">
-        </div>
-        
-        <div id="signupForm" class="hide">
-          <input type="text" id="nameUp" class="fadeIn" name="login" placeholder="name">
-          <input type="text" id="emailUp" class="fadeIn" name="login" placeholder="email">
-          <input type="text" id="passwordUp" class="fadeIn" name="login" placeholder="password">
-          <input type="submit" class="fadeIn" value="Sign Up" onclick="signUp()">
-        </div>
+      <div id="footer"></div>
 
-      </div>
+      <div id="forms"></div>
+    </section>
 
-    </div>
-
-    <div id="footer">
-
-    </div>
-
-    <div id="forms">
-      
-    </div>
-    
-</section>
-
-<script>
-  $(function(){
-    $('#header').load('./reusehtml/reuseHeader.html');
-    $('#footer').load('./reusehtml/reuseFooter.html');
-    $('#forms').load('./reusehtml/reuseForm.html', () => {        
-      $.getScript("./js/headerForm.js")
-      $.getScript("./js/getProfile.js")
-    })
-    $.getScript("https://js.tappaysdk.com/tpdirect/v5.1.0", () => {
-      $.getScript("./js/tapPay.js");
-    });
-    $.getScript("./js/fb.js");
-  });
-</script>
-
-</body>
+    <script>
+      $(function () {
+        $("#header").load("./reusehtml/reuseHeader.html");
+        $("#footer").load("./reusehtml/reuseFooter.html");
+        $("#forms").load("./reusehtml/reuseForm.html", () => {
+          $.getScript("./js/headerForm.js");
+          $.getScript("./js/getProfile.js");
+        });
+        $.getScript("https://js.tappaysdk.com/tpdirect/v5.1.0", () => {
+          $.getScript("./js/tapPay.js");
+        });
+        $.getScript("./js/fb.js");
+      });
+    </script>
+  </body>
 </html>
-

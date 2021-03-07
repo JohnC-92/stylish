@@ -17,24 +17,26 @@
     <div class="searchbox">
       <form action="/">
         <input id="searchbox" name="keyword" type="text">
-        <button type="submit"><i class="fa fa-search"></i></button>
+        <button class="searchBtn" type="submit"><i class="fa fa-search"></i></button>
+        <div class="searchBtnMobile"><i class="fa fa-search"></i></div>
       </form>
     </div>
-    
-    <a class="cartBtn cart" href="#">
-      <!-- <img class='cart' src="/cart.png" alt=""> -->
-      <div id="cart-qty" class="qty">0</div>
-    </a>
-    
-    <a class="memberBtn" href="#">
-      <img class="member" src="/member.png" alt="">
-    </a>      
+
+    <div class="icons">
+      <a class="cartBtn" href="#">
+        <div class="cart">
+          <div id="cart-qty" class="qty">0</div>
+        </div>
+        <div class="mobile-text">購物車</div>
+      </a>
+      
+      <a class="memberBtn" href="#">
+        <div class="member"></div>
+        <div class="mobile-text">會員</div>
+      </a>      
+    </div>
 
     </div>
-  </div>
-
-  <div class="header-btm">
-
   </div>
 
 </header>

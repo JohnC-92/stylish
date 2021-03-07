@@ -1,6 +1,6 @@
 // add onScroll listener to window
 let locked = false;
-window.onscroll = function() {
+window.onscroll = function () {
   // totalPageHeight
   const totalPageHeight = document.body.scrollHeight;
 
@@ -14,20 +14,20 @@ window.onscroll = function() {
 };
 
 // get category from url
-let category = '';
+let category = "";
 // if tags, check tags = tag (men|women|accessories) || tags = keyword (search)
 // else return product all
-let tags = '';
-if (window.location.href.split('?')[1]) {
-  tags = window.location.href.split('?')[1].split('=');
-  if (tags[0] === 'tag') {
-    category = window.location.href.split('=')[1];
+let tags = "";
+if (window.location.href.split("?")[1]) {
+  tags = window.location.href.split("?")[1].split("=");
+  if (tags[0] === "tag") {
+    category = window.location.href.split("=")[1];
     getProduct();
-  } else if (tags[0] === 'keyword') {
+  } else if (tags[0] === "keyword") {
     searchProduct(tags[1]);
   }
 } else {
-  category = 'all';
+  category = "all";
   getProduct();
 }
 
@@ -36,42 +36,46 @@ if (window.location.href.split('?')[1]) {
 let data = {};
 let paging = 0;
 let campaignArr = {};
-const view = document.querySelector('.view');
+const view = document.querySelector(".view");
 
 /**
  * Function to update banner campaign
  */
 function getCampaign() {
-  const banner = document.querySelector('.banner');
+  const banner = document.querySelector(".banner");
   const request = new XMLHttpRequest();
-  request.responseType = 'json';
-  request.onreadystatechange = function() {
+  request.responseType = "json";
+  request.onreadystatechange = function () {
     if (request.readyState === 4) {
       campaignArr = request.response.data;
 
       // 3 is the number of campaigns in carousel
       for (let i = 0; i < 3; i++) {
-        banner.children[i].style['background-image'] = `
+        banner.children[i].style["background-image"] = `
         url(${campaignArr[i].picture})`;
 
-        banner.children[i].href = `/product.html?id=${campaignArr[i].product_id}`;
+        banner.children[
+          i
+        ].href = `/product.html?id=${campaignArr[i].product_id}`;
 
-        banner.children[i].children[0].innerHTML =
-        campaignArr[i].story.replace(/\n/g, '<br />');
+        banner.children[i].children[0].innerHTML = campaignArr[i].story.replace(
+          /\n/g,
+          "<br />"
+        );
       }
     }
   };
 
-  request.open('GET', '/api/1.0/marketing/campaigns');
+  request.open("GET", "/api/1.0/marketing/campaigns");
   request.send();
-};
+}
 
 /**
  * Function to render product data
  */
 function getProduct() {
   const request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (request.readyState === 4) {
       data = JSON.parse(request.response).data;
       paging = JSON.parse(request.response).next_paging || -9999;
@@ -80,18 +84,32 @@ function getProduct() {
       }
     }
   };
-  request.open('GET', `/api/1.0/products/${category}`);
+  request.open("GET", `/api/1.0/products/${category}`);
   request.send();
-};
+}
 
 /**
  * Function to search/filter product by product name
  * @param {*} keyword Search keyword to search/filter product
  */
 function searchProduct(keyword) {
+  if (keyword === "") {
+    const noProductDiv = document.createElement("div");
+    noProductDiv.setAttribute("class", "no-product");
+    noProductDiv.textContent = "請輸入關鍵字";
+    document.querySelector(".body").appendChild(noProductDiv);
+  }
   const request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (request.readyState === 4) {
+      console.log("YYYYY");
+      console.log(request.response);
+      if (request.response === "Error when querying for categories") {
+        const noProductDiv = document.createElement("div");
+        noProductDiv.setAttribute("class", "no-product");
+        noProductDiv.textContent = "搜尋不到產品喔";
+        document.querySelector(".body").appendChild(noProductDiv);
+      }
       data = JSON.parse(request.response).data;
       paging = JSON.parse(request.response).next_paging || -9999;
       for (let i = 0; i < data.length; i++) {
@@ -99,7 +117,7 @@ function searchProduct(keyword) {
       }
     }
   };
-  request.open('GET', `/api/1.0/products/search?keyword=${keyword}`);
+  request.open("GET", `/api/1.0/products/search?keyword=${keyword}`);
   request.send();
 }
 
@@ -112,7 +130,7 @@ function showElementScroll() {
   // if search case use search case url
   let url = `/api/1.0/products/${category}?paging=${paging}`;
   if (tags[0]) {
-    if (tags[0] === 'keyword') {
+    if (tags[0] === "keyword") {
       url = `/api/1.0/products/search?keyword=${tags[1]}&paging=${paging}`;
     }
   }
@@ -120,7 +138,7 @@ function showElementScroll() {
   // make request only when there is next page
   if (paging > 0) {
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
       if (request.readyState === 4) {
         data = JSON.parse(request.response).data;
         paging = JSON.parse(request.response).next_paging || -9999;
@@ -130,14 +148,14 @@ function showElementScroll() {
         }
       }
     };
-    request.open('GET', url);
+    request.open("GET", url);
     request.send();
   }
   // let locked variable true and make no request when no paging
   if (paging === -9999) {
     locked = true;
   }
-};
+}
 
 /**
  * Function to create new product div if there is next paging data
@@ -145,30 +163,33 @@ function showElementScroll() {
  * @return {*} Return new div element with product details
  */
 function createProductDiv(product) {
-  const newDiv = document.createElement('a');
-  newDiv.setAttribute('class', 'product');
+  const newDiv = document.createElement("a");
+  newDiv.setAttribute("class", "product");
   newDiv.href = `/product.html?id=${product.id}`;
 
-  const newImg = document.createElement('img');
-  newImg.setAttribute('class', 'img');
+  const newImg = document.createElement("img");
+  newImg.setAttribute("class", "img");
   newImg.src = product.main_image;
 
-  const newColor = document.createElement('div');
-  newColor.setAttribute('class', 'colors');
+  const newColor = document.createElement("div");
+  newColor.setAttribute("class", "colors");
 
-  const newName = document.createElement('div');
-  newName.setAttribute('class', 'name');
+  const newName = document.createElement("div");
+  newName.setAttribute("class", "name");
   newName.textContent = product.title;
 
-  const newPrice = document.createElement('div');
-  newPrice.setAttribute('class', 'price');
+  const newPrice = document.createElement("div");
+  newPrice.setAttribute("class", "price");
   newPrice.textContent = `TWD.${product.price}`;
 
   for (let j = 0; j < product.colors.length; j++) {
-    const newColorOption = document.createElement('div');
-    newColorOption.setAttribute('class', 'color');
-    newColorOption.setAttribute('style', `
-    background-color: #${product.colors[j].code}`);
+    const newColorOption = document.createElement("div");
+    newColorOption.setAttribute("class", "color");
+    newColorOption.setAttribute(
+      "style",
+      `
+    background-color: #${product.colors[j].code}`
+    );
     newColor.appendChild(newColorOption);
   }
 
@@ -178,4 +199,4 @@ function createProductDiv(product) {
   newDiv.appendChild(newPrice);
 
   return newDiv;
-};
+}
